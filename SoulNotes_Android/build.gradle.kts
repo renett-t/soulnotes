@@ -39,8 +39,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared"))
 
+    implementation(project(":SoulNotes_Shared"))
     implementation("androidx.compose.ui:ui:1.4.0")
     implementation("androidx.compose.ui:ui-tooling:1.4.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.0")
