@@ -4,6 +4,7 @@ import com.squareup.sqldelight.db.SqlDriver
 import dev.renett.soulnotes.database.SoulNotesDatabase
 
 // about expect & actual: https://kotlinlang.org/docs/multiplatform-connect-to-apis.html
+// generate database task:  ./gradlew generateSqlDelightInterface
 expect class DatabaseDriverFactory {
     fun createDriver(): SqlDriver
 }
