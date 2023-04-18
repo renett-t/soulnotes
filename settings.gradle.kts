@@ -14,12 +14,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "SoulNotes"
-include(":SoulNotes")
+
 include(":shared")
-include(":SoulNotes:musictrack")
-include(":SoulNotes:common")
-include(":SoulNotes:common")
-include(":SoulNotes:music")
-include(":SoulNotes:player")
-include(":shared:commonMain:music")
-include(":shared:commonMain:podcasts")
+include(":shared:main:common")
+include(":shared:main:music")
+include(":shared:main:podcasts")
+
+include(":SoulNotes_Android")
+include(":SoulNotes_Android:common")
+include(":SoulNotes_Android:common")
+include(":SoulNotes_Android:music")
+include(":SoulNotes_Android:player")
