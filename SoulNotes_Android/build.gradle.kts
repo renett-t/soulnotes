@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 android {
@@ -48,4 +50,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.4.0")
     implementation("androidx.activity:activity-compose:1.7.0")
     implementation("androidx.core:core-ktx:1.10.0")
+
+    ksp("me.tatarka.inject:kotlin-inject-compiler-ksp:0.6.1")
+    implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
 }

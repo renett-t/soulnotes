@@ -3,9 +3,8 @@ plugins {
     id("com.android.library")
 
     kotlin("plugin.serialization") version "1.8.20"
-//    id("app.cash.sqldelight") version "2.0.0-alpha05"
     id("com.squareup.sqldelight")
-//    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 kotlin {
@@ -38,6 +37,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
@@ -45,6 +45,10 @@ kotlin {
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion")
+
+//                implementation(libs.kotlinInject.runtime)
+//                // todo: заимплементить libs и шаринг либ между модулями
+                implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
             }
         }
         val commonTest by getting {
@@ -58,6 +62,8 @@ kotlin {
             dependencies {
                 implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
+
+                implementation("com.google.dagger:dagger-android:2.45")
             }
         }
         val androidUnitTest by getting
@@ -98,7 +104,16 @@ android {
 }
 
 dependencies {
+    // нахера тут андроид спрашивается
     implementation("androidx.core:core-ktx:1.10.0")
+    implementation("me.tatarka.inject:kotlin-inject-runtime:0.6.1")
+
+    // KSP will eventually have better multiplatform support and we'll be able to simply have
+    // `ksp libs.kotlinInject.compiler` in the dependencies block of each source set
+    // https://github.com/google/ksp/pull/1021
+//    add("kspIosX64", "me.tatarka.inject:kotlin-inject-compiler-ksp:1.8.10-1.0.9")
+//    add("kspIosArm64", "me.tatarka.inject:kotlin-inject-compiler-ksp:1.8.10-1.0.9")
+//    add("kspIosSimulatorArm64", "me.tatarka.inject:kotlin-inject-compiler-ksp:1.8.10-1.0.9")
 }
 
 sqldelight {
